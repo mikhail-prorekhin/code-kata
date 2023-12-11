@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+  demyst:
+    container_name: demyst-web
+    build: ./Demyst/docker
+    restart: always
+    environment:
+      PORT: 3000
+      MYOB_API_URL: http://host.docker.internal:4000/myob/balance
+      XERO_API_URL: http://host.docker.internal:4000/xero/balance
+      DECISION_ENGINE_API_URL: http://host.docker.internal:4000/desigion/approve
+    ports:
+      - 3000:3000
+    volumes:
+      - ./Demyst:/var/www/html
+    tty: true 
+  
+
+  others:
+    container_name: demyst-others
+    build: ./ThirdPartSystems/docker
+    restart: always
+    environment:
+      PORT: 4000
+    ports:
+      - 4000:4000
+    volumes:
+      - ./ThirdPartSystems/services:/var/www/html
+    tty: true 
+   

@@ -1,0 +1,37 @@
+POST http://localhost:4000/xero/balance
+Content-Type: application/json
+
+{
+"estYear":"2002"
+}
+
+POST http://localhost:4000/xero/balance
+Content-Type: application/json
+
+{
+  "businessDetails":{
+    "estYear":"1999"
+  }
+}
+
+POST http://localhost:4000/myob/balance
+Content-Type: application/json
+
+{
+  "businessDetails":{
+    "estYear":"2001"
+  }
+}
+
+
+POST http://localhost:4000/desigion/approve
+Content-Type: application/json
+
+{
+  "name" : "Horns and Hooves",
+  "estYear":"1999",
+  "profit":"100000",
+  "preAssessment": "60"
+}
+
+

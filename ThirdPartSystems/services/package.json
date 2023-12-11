@@ -1,0 +1,16 @@
+{
+  "name": "demyst-others",
+  "version": "1.0.0",
+  "description": "A Stub for emuation third pard systems like MYOB, Xero, etc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mikhail Prorekhin",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.14.2",
+    "koa-bodyparser": "^4.4.1",
+    "koa-router": "^12.0.1"
+  }
+}
