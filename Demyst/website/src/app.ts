@@ -1,30 +1,26 @@
-const path = require("path");
-const fs = require("fs");
+import path from "path";
+import fs from "fs";
 import Koa from "koa";
-import Router from "koa-router";
 import bodyParser from "koa-bodyparser";
 import koaStatic from "koa-static";
-import getBalance from "./controllers/getBalance";
-import sendApplication from "./controllers/sendApplication";
 
-const app = new Koa();
-const router = new Router({ prefix: "/api" });
+import passport from "./middleware/passport";
+import routes from "./routes";
 
-app.use(koaStatic(path.join(__dirname, "public")));
-app.use(bodyParser());
+export default () => {
+  const app = new Koa();
 
-router.post("/balance", getBalance);
+  app.use(koaStatic(path.join(__dirname, "public")));
+  app.use(bodyParser());
+  app.use(passport.initialize());
+  app.use(routes.middleware());
 
-router.post("/application", sendApplication);
-
-app.use(router.routes());
-
-const index = fs.readFileSync(path.join(__dirname, "public/index.html"));
-app.use(async (ctx) => {
-  if (!ctx.url.startsWith("/api")) {
-    ctx.set("content-type", "text/html");
-    ctx.body = index;
-  }
-});
-
-export default app;
+  const index = fs.readFileSync(path.join(__dirname, "public/index.html"));
+  app.use(async (ctx) => {
+    if (!ctx.url.startsWith("/api")) {
+      ctx.set("content-type", "text/html");
+      ctx.body = index;
+    }
+  });
+  return app;
+};

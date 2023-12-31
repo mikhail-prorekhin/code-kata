@@ -1,0 +1,32 @@
+{
+  "app": {
+    "port": "3000"
+  },
+  "remoteServices": {
+    "myobApiUrl": "http://host.docker.internal:4000/myob/balance",
+    "xeroApiUrl": "http://host.docker.internal:4000/xero/balance",
+    "decisionEngineApiUrl": "http://host.docker.internal:4000/desigion/approve"
+  },
+  "mongodb": {
+    "url": "mongodb://host.docker.internal:27017/auth"
+  },
+  "auth": {
+    "salt": "salt",
+    "userSaltLength": 20,
+    "iterations": 1,
+    "hashLength": 64,
+    "hashAlgorithm": "sha512",
+    "github": {
+      "clientId": "clientId",
+      "secret": "secret"
+    },
+    "jwt": {
+      "algorithm": "HS256",
+      "secret": "secret",
+      "expiresIn": "5m"
+    },
+    "refreshToken": {
+      "expiresIn": "30d"
+    }
+  }
+}

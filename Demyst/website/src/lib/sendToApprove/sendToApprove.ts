@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
+import config from "config";
 import { BusinessRulesResult } from "../rules/RuleTypes";
 import { DecisionType } from "../../types/Decision";
 import { ApplicationRequestType } from "../../types/ApplicationRequest";
@@ -13,7 +14,7 @@ export default async (
   let response: AxiosResponse;
 
   response = await axios.post(
-    <string>process.env.DECISION_ENGINE_API_URL,
+    <string>config.get("remoteServices.decisionEngineApiUrl"),
     request
   );
 

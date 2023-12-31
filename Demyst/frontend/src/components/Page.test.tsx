@@ -17,19 +17,46 @@ const StubProvider = ({ children }: { children: ReactNode }) => {
 };
 
 describe("Page", () => {
-  it("display Form on default", () => {
-    getState.mockReturnValueOnce({})
+  it("display  auth Form on default", () => {
+    getState.mockReturnValue({})
     const view = render(
       <StubProvider>
         <Page />
       </StubProvider>
 
     );
-    expect(view.getByTestId('account-data')).toBeInTheDocument();
+    expect(view.getByTestId('auth-data')).toBeInTheDocument();
+  })
+
+
+  it("display request accout info ", () => {
+    getState.mockReturnValue({
+      user: {
+        login: "user name",
+        gwt: {
+          accessToken: "accessToken",
+          refreshToken: "refreshToken"
+        }
+      },
+    })
+    const { getByTestId } = render(
+      <StubProvider>
+        <Page />
+      </StubProvider>
+
+    );
+    expect(getByTestId('account-data')).toBeInTheDocument();
   })
 
   it("display Review form", () => {
-    getState.mockReturnValueOnce({
+    getState.mockReturnValue({
+      user: {
+        login: "user name",
+        gwt: {
+          accessToken: "accessToken",
+          refreshToken: "refreshToken"
+        }
+      },
       company: {
         companyName: "Horns and Hooves",
         estYear: 1999
@@ -54,12 +81,19 @@ describe("Page", () => {
   })
 
   it("display final result", () => {
-    getState.mockReturnValueOnce({
+    getState.mockReturnValue({
+      user: {
+        login: "user name",
+        gwt: {
+          accessToken: "accessToken",
+          refreshToken: "refreshToken"
+        }
+      },
       company: {
         companyName: "Horns and Hooves",
         estYear: 1999
       },
-      decision: { decision: "approved" },
+      decision: "approved",
       accountProvider: "myob",
       loanAmount: "100",
       balanceSheet: [
@@ -70,17 +104,17 @@ describe("Page", () => {
           assetsValue: 1234
         }]
     })
-    const view = render(
+    const { getByTestId } = render(
       <StubProvider>
         <Page />
       </StubProvider>
 
     );
-    expect(view.getByTestId('review-decision')).toBeInTheDocument();
+    expect(getByTestId('review-decision')).toBeInTheDocument();
   })
 
   it("display loading", () => {
-    getState.mockReturnValueOnce({
+    getState.mockReturnValue({
       networkInProgress: true,
       company: {
         companyName: "Horns and Hooves",
@@ -105,5 +139,8 @@ describe("Page", () => {
     );
     expect(view.getByTestId('loading-spiner')).toBeInTheDocument();
   })
+
+
+
 
 })

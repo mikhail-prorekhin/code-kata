@@ -1,5 +1,8 @@
 ThirdPartSystems/services/node_modules/
 Demyst/frontend/node_modules/
 Demyst/frontend/build/
+Demyst/frontend/coverage/
 Demyst/website/build/
 Demyst/website/node_modules/
+Demyst/website/coverage
+Demyst/website/config/local.json

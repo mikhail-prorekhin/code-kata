@@ -5,17 +5,14 @@ services:
     container_name: demyst-web
     build: ./Demyst/docker
     restart: always
-    environment:
-      PORT: 3000
-      MYOB_API_URL: http://host.docker.internal:4000/myob/balance
-      XERO_API_URL: http://host.docker.internal:4000/xero/balance
-      DECISION_ENGINE_API_URL: http://host.docker.internal:4000/desigion/approve
     ports:
       - 3000:3000
+      - 3006:3006
     volumes:
       - ./Demyst:/var/www/html
     tty: true 
-  
+    depends_on:
+      - db
 
   others:
     container_name: demyst-others
@@ -29,3 +26,8 @@ services:
       - ./ThirdPartSystems/services:/var/www/html
     tty: true 
    
+  db:  
+    container_name: demyst-db
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    ports:
+      - 27017:27017

@@ -1,0 +1,32 @@
+{
+  "app": {
+    "port": "3000"
+  },
+  "remoteServices": {
+    "myobApiUrl": "--test--myobApiUrl--",
+    "xeroApiUrl": "--test--xeroApiUrl--",
+    "decisionEngineApiUrl": "--test--decisionEngineApiUrl--"
+  },
+  "mongodb": {
+    "url": "--test--mongodbUrl--"
+  },
+  "auth": {
+    "salt": "salt",
+    "userSaltLength": 20,
+    "iterations": 1,
+    "hashLength": 64,
+    "hashAlgorithm": "sha512",
+    "github": {
+      "clientId": "clientId",
+      "secret": "secret"
+    },
+    "jwt": {
+      "algorithm": "HS256",
+      "secret": "secret",
+      "expiresIn": "5m"
+    },
+    "refreshToken": {
+      "expiresIn": "30d"
+    }
+  }
+}

@@ -36,7 +36,7 @@ describe("hook", () => {
 
     const [state, handler] = useFormState(action);
     await handler(event as unknown as React.FormEvent<HTMLFormElement>);
-    expect(event.stopPropagation).toHaveBeenCalled();
+    expect(event.preventDefault).toHaveBeenCalled();
     expect(state).toEqual({ label: "useState" });
     expect(setter).toBeCalledWith({
       companyName: "Horns and Hooves",

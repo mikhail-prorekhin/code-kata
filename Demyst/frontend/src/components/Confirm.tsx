@@ -13,8 +13,7 @@ const ApplicationForm = () => {
             The Decision Engine Respponse
         </Typography>
         <Typography component="h1" variant="h5" sx={{ mt: 3, mb: 3 }} color="red" >
-            {state.decision?.decision}
-        </Typography>
+            <>{state.decision}</></Typography>
         <Button
             fullWidth
             variant="contained"

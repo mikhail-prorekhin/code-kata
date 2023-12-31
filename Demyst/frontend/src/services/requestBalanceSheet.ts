@@ -1,9 +1,10 @@
-import { ZodIssue } from "zod";
 import { AccountProviderType } from "../types/AccountProvider";
 import { BalanceSheetRequest } from "../types/BalanceSheetRequest";
 import { ActionType, ActionTypes } from "../redux/appReducer";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { CompanyType } from "../types/Company";
+import { refresh, setErrorMessage, flatIssues } from "./utils";
+import { UserType } from "../types/User";
 
 export type ApplicationFormState = {
   errors?: {
@@ -16,13 +17,9 @@ export type ApplicationFormState = {
   message?: string;
 };
 
-export const flatIssues = (issues: ZodIssue[]) =>
-  Object.fromEntries(
-    issues.map((itm: ZodIssue) => [itm.path[itm.path.length - 1], itm.message])
-  );
-
 export const requestBalanceSheet =
-  (dispatch: React.Dispatch<ActionType>) => async (formData: FormData) => {
+  (dispatch: React.Dispatch<ActionType>, user: UserType) =>
+  async (formData: FormData) => {
     const request = {
       businessDetails: {
         companyName: formData.get("companyName"),
@@ -41,11 +38,14 @@ export const requestBalanceSheet =
     }
 
     dispatch({ type: ActionTypes.NetworkInProgress });
+
+    const accessToken = await refresh(user.gwt, dispatch);
     let response: AxiosResponse;
     try {
       response = await axios.post("/api/balance", request, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + accessToken,
         },
       });
       dispatch({
@@ -57,8 +57,8 @@ export const requestBalanceSheet =
           loanAmount: request.loanAmount,
         },
       });
-    } catch (_) {
-      //TODO: notyfy about error
+    } catch (err) {
+      setErrorMessage(err as AxiosError, dispatch);
     }
     dispatch({ type: ActionTypes.NetworkDone });
     return {};

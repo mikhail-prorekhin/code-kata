@@ -49,10 +49,12 @@ const BalanceSheet = ({ sheet }: { sheet: BalanceSheetType | undefined }) =>
                 }
             </TableBody>
             <TableFooter>
-                <TableCell />
-                <TableCell />
-                <TableCell align="right">{sheet?.reduce((sum, row) => sum + row.profitOrLoss, 0)}</TableCell>
-                <TableCell align="right">{sheet?.reduce((sum, row) => sum + row.assetsValue, 0)}</TableCell>
+                <TableRow>
+                    <TableCell />
+                    <TableCell />
+                    <TableCell align="right">{sheet?.reduce((sum, row) => sum + row.profitOrLoss, 0)}</TableCell>
+                    <TableCell align="right">{sheet?.reduce((sum, row) => sum + row.assetsValue, 0)}</TableCell>
+                </TableRow>
             </TableFooter>
         </Table>
     </TableContainer>

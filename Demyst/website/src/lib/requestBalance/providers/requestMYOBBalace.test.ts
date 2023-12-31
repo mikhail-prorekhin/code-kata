@@ -6,7 +6,6 @@ jest.mock("axios");
 
 describe("requestMYOBBalace", () => {
   it("send", async () => {
-    process.env.MYOB_API_URL = "--MYOB_API_URL--";
     axios.post = jest
       .fn()
       .mockReturnValue(Promise.resolve({ data: "--axios.post --" }));
@@ -15,6 +14,6 @@ describe("requestMYOBBalace", () => {
       "--BalanceSheetRequestType--" as unknown as BalanceSheetRequestType;
 
     expect(await requestMYOBBalace(request)).toBe("--axios.post --");
-    expect(axios.post).toHaveBeenCalledWith(process.env.MYOB_API_URL, request);
+    expect(axios.post).toHaveBeenCalledWith("--test--myobApiUrl--", request);
   });
 });

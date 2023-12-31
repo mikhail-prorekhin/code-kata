@@ -11,7 +11,6 @@ jest.mock("./mappers");
 
 describe("sendToApprove", () => {
   it("send", async () => {
-    process.env.DECISION_ENGINE_API_URL = "--DECISION_ENGINE_API_URL--";
     axios.post = jest
       .fn()
       .mockReturnValue(Promise.resolve({ data: "--axios.post --" }));
@@ -25,7 +24,7 @@ describe("sendToApprove", () => {
       "--axios.post --"
     );
     expect(axios.post).toHaveBeenCalledWith(
-      process.env.DECISION_ENGINE_API_URL,
+      "--test--decisionEngineApiUrl--",
       "--mapped request--"
     );
   });

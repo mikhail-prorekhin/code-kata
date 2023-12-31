@@ -11,7 +11,7 @@ function useFormState<State>(
 ): [State, FormEventHandler<HTMLFormElement>] {
   const [state, setState] = useState({} as State);
   const handler = async (event: React.SyntheticEvent<EventTarget>) => {
-    event.stopPropagation();
+    event.preventDefault();
     const data = new FormData(event.target as HTMLFormElement);
     setState(await submitHook(data));
   };

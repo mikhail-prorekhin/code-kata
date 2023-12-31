@@ -1,8 +1,47 @@
 
 GET http://localhost:3000
 
+
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{"login": "login2", "password": "1111"}
+
+
+GET http://localhost:3000/api/oauth/github
+
+####
+
+POST http://localhost:3000/api/refresh
+Content-Type: application/json
+
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NThhYzg5M2U5ZWIzMDc4ZTk0NWQ1YWYiLCJpYXQiOjE3MDM3MjY3NzksImV4cCI6MTcwMzcyNzA3OX0.AgJF1Lzj_xeJhQyUeK2nbo8FBekOtJrHutjeBVwyt1Y",
+  "refreshToken": "a874a13f-2e64-4776-b011-28fb3777bcc9"
+}
+
+####
+
+POST http://localhost:3000/api/logout
+Content-Type: application/json
+
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NThhYzg5M2U5ZWIzMDc4ZTk0NWQ1YWYiLCJpYXQiOjE3MDM3MjY3NDEsImV4cCI6MTcwMzcyNzA0MX0.wqB02XvU6joLLv3aMGM3qBfSEp-AYeTu5_UHQE4IAeY",
+  "refreshToken": "e06dc4a2-1c5f-431d-b1cf-b42faf523fbe"
+}
+
+####
+
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{"login": "login2", "password": "1111"}
+
+####
+
 POST http://localhost:3000/api/balance
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NThhYzg5M2U5ZWIzMDc4ZTk0NWQ1YWYiLCJpYXQiOjE3MDM2Nzk5OTksImV4cCI6MTcwMzY4MDI5OX0.WWvtO3AdeJbhkDTGA3mt5kO6Ev63QLI89P1u0sD26NE
 
 {
 "businessDetails":{
@@ -10,12 +49,14 @@ Content-Type: application/json
   "estYear": 2023
 },
 "accountProvider":"xero",
-"loanAmount1": 200
+"loanAmount": 200
 }
 
+####
 
 POST http://localhost:3000/api/application
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NThhYzg5M2U5ZWIzMDc4ZTk0NWQ1YWYiLCJpYXQiOjE3MDM2MjgwNDIsImV4cCI6MTcwMzYyODM0Mn0.5UZu1yWOIcWR94eJwkyD-t8cfbQ3DvYuXGJazJjPZTI
 
 {
   "businessDetails":{
@@ -98,5 +139,5 @@ Content-Type: application/json
     }
 ]
 }
-
+####
 
