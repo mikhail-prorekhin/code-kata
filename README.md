@@ -1,12 +1,12 @@
 # About
 
-Hi there,
+Hi there,<br>
 I would like to present a small chalemge task for DemystData,
 please see [the requarentmens](https://github.com/DemystData/code-kata/blob/main/README.md)
 
 ## Run
 
-simplease way to run is start it on a docker container<br>
+The simpleast way to run is starting a docker container<br>
 `docker-compose up`
 
 ## Authentification
