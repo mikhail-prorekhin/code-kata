@@ -1,8 +1,7 @@
 # About
 
 Hi there,<br>
-I would like to present a small chalemge task for DemystData,
-please see [the requarentmens](https://github.com/DemystData/code-kata/blob/main/README.md)
+I would like to present a small chalemge task 
 
 ## Run
 
@@ -28,3 +27,5 @@ in a `Demyst/website/config/local.json` please add this valuses
   }
 }
 ```
+## Important
+Would be very grateful for any feedback
